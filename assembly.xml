@@ -1,0 +1,64 @@
+<assembly
+   xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0 http://maven.apache.org/xsd/assembly-1.1.0.xsd">
+
+  <baseDirectory>${project.artifactId}</baseDirectory>
+  
+  <formats>
+    <format>zip</format>
+  </formats>
+
+  <files>
+    <file>
+      <source>${project.basedir}/src/main/resources/version.xml</source>
+      <outputDirectory>.</outputDirectory>
+      <filtered>true</filtered>
+    </file>
+    <file>
+      <source>${project.basedir}/src/main/resources/segment.csv</source>
+      <outputDirectory>examples</outputDirectory>
+      <filtered>true</filtered>
+    </file>
+    <file>
+      <source>${project.basedir}/src/main/resources/segment.ktr</source>
+      <outputDirectory>examples</outputDirectory>
+      <filtered>true</filtered>
+    </file>
+  </files>
+  
+  <fileSets>
+    <fileSet>
+      <includes>
+	<include>LICENSE.txt</include>
+      </includes>
+    </fileSet>
+    <fileSet>
+      <directory>target/lib</directory>
+      <outputDirectory>lib</outputDirectory>
+      <includes>
+	<include>pdm-ce-${weka.version}.jar</include>
+	<include>dm-commons-${kettle.version}.jar</include>
+	<include>javaFXScatter3D-1.0.0.jar</include>
+	<include>xchart-${xchart.version}.jar</include>
+	<include>jfxswt-1.0.jar</include>
+      </includes>
+    </fileSet>
+    <fileSet>
+      <directory>target</directory>
+      <outputDirectory>.</outputDirectory>
+      <includes>
+	<include>*.jar</include>
+	<include>version.xml</include>
+      </includes>
+    </fileSet>
+    <fileSet>
+      <directory>target/examples</directory>
+      <outputDirectory>examples</outputDirectory>
+      <includes>
+	<include>*.ktr</include>
+	<include>*.csv</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+</assembly>
